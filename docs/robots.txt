@@ -5,4 +5,4 @@ Disallow: /api
 Disallow: /*/rezervace/hotovo
 Disallow: /*/rezervace/platba-dev
 
-Sitemap: https://morgenster95.github.io/chalupa-web/sitemap.xml
+Sitemap: http://localhost:3000/sitemap.xml

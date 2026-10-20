@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 <url>
-<loc>https://morgenster95.github.io/chalupa-web/cs</loc>
-<xhtml:link rel="alternate" hreflang="cs" href="https://morgenster95.github.io/chalupa-web/cs" />
-<xhtml:link rel="alternate" hreflang="en" href="https://morgenster95.github.io/chalupa-web/en" />
-<xhtml:link rel="alternate" hreflang="de" href="https://morgenster95.github.io/chalupa-web/de" />
+<loc>http://localhost:3000/cs</loc>
+<xhtml:link rel="alternate" hreflang="cs" href="http://localhost:3000/cs" />
+<xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en" />
+<xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de" />
 </url>
 <url>
-<loc>https://morgenster95.github.io/chalupa-web/cs/rezervace</loc>
-<xhtml:link rel="alternate" hreflang="cs" href="https://morgenster95.github.io/chalupa-web/cs/rezervace" />
-<xhtml:link rel="alternate" hreflang="en" href="https://morgenster95.github.io/chalupa-web/en/rezervace" />
-<xhtml:link rel="alternate" hreflang="de" href="https://morgenster95.github.io/chalupa-web/de/rezervace" />
+<loc>http://localhost:3000/cs/rezervace</loc>
+<xhtml:link rel="alternate" hreflang="cs" href="http://localhost:3000/cs/rezervace" />
+<xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/rezervace" />
+<xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de/rezervace" />
 </url>
 <url>
-<loc>https://morgenster95.github.io/chalupa-web/cs/kontakt</loc>
-<xhtml:link rel="alternate" hreflang="cs" href="https://morgenster95.github.io/chalupa-web/cs/kontakt" />
-<xhtml:link rel="alternate" hreflang="en" href="https://morgenster95.github.io/chalupa-web/en/kontakt" />
-<xhtml:link rel="alternate" hreflang="de" href="https://morgenster95.github.io/chalupa-web/de/kontakt" />
+<loc>http://localhost:3000/cs/kontakt</loc>
+<xhtml:link rel="alternate" hreflang="cs" href="http://localhost:3000/cs/kontakt" />
+<xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/kontakt" />
+<xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de/kontakt" />
 </url>
 <url>
-<loc>https://morgenster95.github.io/chalupa-web/cs/podminky</loc>
-<xhtml:link rel="alternate" hreflang="cs" href="https://morgenster95.github.io/chalupa-web/cs/podminky" />
-<xhtml:link rel="alternate" hreflang="en" href="https://morgenster95.github.io/chalupa-web/en/podminky" />
-<xhtml:link rel="alternate" hreflang="de" href="https://morgenster95.github.io/chalupa-web/de/podminky" />
+<loc>http://localhost:3000/cs/podminky</loc>
+<xhtml:link rel="alternate" hreflang="cs" href="http://localhost:3000/cs/podminky" />
+<xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/podminky" />
+<xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de/podminky" />
 </url>
 <url>
-<loc>https://morgenster95.github.io/chalupa-web/cs/pokoje/pokoj-pro-2</loc>
-<xhtml:link rel="alternate" hreflang="cs" href="https://morgenster95.github.io/chalupa-web/cs/pokoje/pokoj-pro-2" />
-<xhtml:link rel="alternate" hreflang="en" href="https://morgenster95.github.io/chalupa-web/en/pokoje/pokoj-pro-2" />
-<xhtml:link rel="alternate" hreflang="de" href="https://morgenster95.github.io/chalupa-web/de/pokoje/pokoj-pro-2" />
+<loc>http://localhost:3000/cs/pokoje/pokoj-pro-2</loc>
+<xhtml:link rel="alternate" hreflang="cs" href="http://localhost:3000/cs/pokoje/pokoj-pro-2" />
+<xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/pokoje/pokoj-pro-2" />
+<xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de/pokoje/pokoj-pro-2" />
 </url>
 <url>
-<loc>https://morgenster95.github.io/chalupa-web/cs/pokoje/rodinny-pokoj</loc>
-<xhtml:link rel="alternate" hreflang="cs" href="https://morgenster95.github.io/chalupa-web/cs/pokoje/rodinny-pokoj" />
-<xhtml:link rel="alternate" hreflang="en" href="https://morgenster95.github.io/chalupa-web/en/pokoje/rodinny-pokoj" />
-<xhtml:link rel="alternate" hreflang="de" href="https://morgenster95.github.io/chalupa-web/de/pokoje/rodinny-pokoj" />
+<loc>http://localhost:3000/cs/pokoje/rodinny-pokoj</loc>
+<xhtml:link rel="alternate" hreflang="cs" href="http://localhost:3000/cs/pokoje/rodinny-pokoj" />
+<xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/pokoje/rodinny-pokoj" />
+<xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de/pokoje/rodinny-pokoj" />
 </url>
 </urlset>

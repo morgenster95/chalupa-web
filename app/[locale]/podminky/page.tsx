@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Sprig } from "@/components/Botanical";
 import { getSettings } from "@/lib/db";
 import { getMessages, t, type Locale } from "@/lib/i18n";
 
@@ -20,7 +21,8 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
     [m.terms.privacy, m.terms.privacyText],
   ];
   return (
-    <section className="container-x max-w-3xl py-10 md:py-16">
+    <section className="container-x relative max-w-3xl py-10 md:py-16">
+      <Sprig name="wheat" className="absolute -right-24 top-6 hidden h-96 w-auto rotate-12 text-wood/[0.1] md:block" />
       <h1 className="text-4xl sm:text-5xl">{m.terms.title}</h1>
       <div className="mt-10 space-y-8">
         {sections.map(([h, body]) => (

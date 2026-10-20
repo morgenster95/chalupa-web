@@ -30,14 +30,14 @@ export default function Gallery({ photos, variant = "masonry" }: { photos: Photo
       {variant === "masonry" ? (
         <div className="columns-2 gap-3 sm:gap-4 md:columns-3 [&>*]:mb-3 sm:[&>*]:mb-4">
           {photos.map((p, i) => (
-            <button key={p.src + i} onClick={() => setIdx(i)} className="group block w-full overflow-hidden rounded-2xl bg-cream">
+            <button key={p.src + i} onClick={() => setIdx(i)} className="group block w-full overflow-hidden rounded-sm border border-wood/10 bg-[#fffdf8] p-1.5 shadow-print sm:p-2">
               <Image
                 src={p.src}
                 alt={p.alt}
                 width={p.w}
                 height={p.h}
                 sizes="(min-width: 768px) 33vw, 50vw"
-                className="h-auto w-full transition duration-500 group-hover:scale-[1.03]"
+                className="h-auto w-full transition duration-500 group-hover:opacity-90"
               />
             </button>
           ))}
@@ -48,7 +48,7 @@ export default function Gallery({ photos, variant = "masonry" }: { photos: Photo
             <button
               key={p.src + i}
               onClick={() => setIdx(i)}
-              className={`group relative overflow-hidden rounded-2xl bg-cream ${i === 0 ? "col-span-2 row-span-2 aspect-[4/3] sm:aspect-auto" : "aspect-square"}`}
+              className={`group relative overflow-hidden rounded-sm bg-cream shadow-print ring-4 ring-[#fffdf8] ${i === 0 ? "col-span-2 row-span-2 aspect-[4/3] sm:aspect-auto" : "aspect-square"}`}
             >
               <Image
                 src={p.src}

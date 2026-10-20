@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { Sprig } from "@/components/Botanical";
 import ContactForm from "@/components/ContactForm";
 import Icon from "@/components/Icon";
 import { getSettings } from "@/lib/db";
@@ -17,13 +18,14 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   const s = await getSettings();
   const mapQuery = encodeURIComponent(`${s.address}, ${s.municipality}`);
   return (
-    <section className="container-x grid gap-10 py-10 md:grid-cols-[1fr_1.3fr] md:py-16">
-      <div>
+    <section className="container-x relative grid gap-10 py-10 md:grid-cols-[1fr_1.3fr] md:py-16">
+      <Sprig name="chamomile" className="absolute -left-24 top-24 hidden h-96 w-auto -rotate-12 text-wood/[0.09] lg:block" />
+      <div className="relative">
         <h1 className="text-4xl sm:text-5xl">{m.contact.title}</h1>
         <p className="mt-4 text-lg leading-relaxed text-muted">{m.contact.text}</p>
         <ul className="mt-8 space-y-5">
           <li className="flex gap-4">
-            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-sage-light text-sage-dark">
+            <span className="slice h-12 w-12 shrink-0">
               <Icon name="pin" />
             </span>
             <div>
@@ -37,7 +39,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
             </div>
           </li>
           <li className="flex gap-4">
-            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-sage-light text-sage-dark">
+            <span className="slice h-12 w-12 shrink-0">
               <Icon name="phone" />
             </span>
             <div>
@@ -48,7 +50,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
             </div>
           </li>
           <li className="flex gap-4">
-            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-sage-light text-sage-dark">
+            <span className="slice h-12 w-12 shrink-0">
               <Icon name="mail" />
             </span>
             <div>

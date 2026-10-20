@@ -48,7 +48,7 @@ export default function Header({ locale, name, nav }: Props) {
     >
       <div className="container-x flex h-16 items-center justify-between gap-4 md:h-20">
         <Link href={base} className="flex items-center gap-2.5 text-wood">
-          <span className="grid h-9 w-9 place-items-center rounded-full bg-sage-light text-sage-dark">
+          <span className="slice h-10 w-10">
             <Icon name="home" className="h-5 w-5" />
           </span>
           <span className="font-serif text-lg font-semibold leading-tight md:text-xl">{name}</span>
@@ -69,7 +69,7 @@ export default function Header({ locale, name, nav }: Props) {
                 key={l.code}
                 href={switchHref(l.code)}
                 onClick={() => (document.cookie = `lang=${l.code};path=/;max-age=31536000`)}
-                className={`rounded-full px-2 py-1 ${l.code === locale ? "bg-cream text-wood" : "text-muted hover:text-wood"}`}
+                className={`rounded-md px-2 py-1 ${l.code === locale ? "bg-cream text-wood" : "text-muted hover:text-wood"}`}
                 hrefLang={l.code}
               >
                 {l.label}
@@ -106,7 +106,7 @@ export default function Header({ locale, name, nav }: Props) {
                     key={l.code}
                     href={switchHref(l.code)}
                     onClick={() => (document.cookie = `lang=${l.code};path=/;max-age=31536000`)}
-                    className={`rounded-full px-3 py-1.5 ${l.code === locale ? "bg-cream text-wood" : "text-muted"}`}
+                    className={`rounded-md px-3 py-1.5 ${l.code === locale ? "bg-cream text-wood" : "text-muted"}`}
                   >
                     {l.label}
                   </Link>

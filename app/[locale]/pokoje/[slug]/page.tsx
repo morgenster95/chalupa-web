@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Sprig } from "@/components/Botanical";
 import BookingWidget from "@/components/BookingWidget";
 import Gallery from "@/components/Gallery";
 import Icon from "@/components/Icon";
@@ -45,7 +46,8 @@ export default async function RoomPage({ params }: { params: Promise<{ locale: L
 
   return (
     <>
-      <section className="container-x pb-6 pt-8 md:pt-12">
+      <section className="container-x relative pb-6 pt-8 md:pt-12">
+        <Sprig name="hawthorn" className="absolute -right-16 -top-2 hidden h-48 w-auto rotate-[168deg] text-wood/[0.1] md:block" />
         <Link href={`/${locale}#pokoje`} className="inline-flex items-center gap-1 text-sm font-semibold text-muted hover:text-wood">
           <Icon name="chevronLeft" className="h-4 w-4" /> {m.nav.rooms}
         </Link>

@@ -24,6 +24,14 @@
 
   --radius-xl2: 1.25rem;
   --shadow-soft: 0 1px 2px rgb(60 40 20 / 0.04), 0 8px 24px -8px rgb(60 40 20 / 0.12);
+  --shadow-print: 0 1px 2px rgb(60 40 20 / 0.1), 0 12px 30px -12px rgb(60 40 20 / 0.35);
+
+  --color-kraft: #e6d3ad;
+  --color-bark: #3b2a1c;
+  --color-bark-light: #57402b;
+
+  /* jemný šum papíru + větší skvrny, aby plochy nepůsobily „digitálně“ */
+  --tex-paper: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .29 0 0 0 0 .17 0 0 0 .11 0'/%3E%3C/filter%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .4 0 0 0 0 .22 0 0 0 .09 -.02'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 @layer base {
@@ -33,6 +41,7 @@
   }
   body {
     @apply bg-paper font-sans text-ink antialiased;
+    background-image: var(--tex-paper);
     font-feature-settings: "kern";
   }
   h1,
@@ -63,10 +72,10 @@
   @apply text-xs font-bold uppercase tracking-[0.18em] text-sage-dark;
 }
 @utility btn {
-  @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[0.95rem] font-semibold transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-60;
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-[0.95rem] font-semibold transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-60;
 }
 @utility btn-primary {
-  @apply btn bg-honey text-white shadow-soft hover:bg-honey-dark;
+  @apply btn bg-honey text-white shadow-[inset_0_-2px_0_rgb(0_0_0/0.14),0_1px_2px_rgb(60_40_20/0.15)] hover:bg-honey-dark;
 }
 @utility btn-secondary {
   @apply btn border border-wood/25 bg-paper/70 text-wood hover:border-wood/50 hover:bg-cream;
@@ -75,7 +84,8 @@
   @apply btn bg-sage-dark text-white hover:bg-[#45533e];
 }
 @utility card {
-  @apply rounded-xl2 border border-line bg-white/70 shadow-soft;
+  @apply rounded-md border border-wood/12 bg-[#fffdf8] shadow-print;
+  background-image: var(--tex-paper);
 }
 @utility input {
   @apply w-full rounded-xl border border-line bg-white px-4 py-3 text-ink placeholder:text-muted/60 focus:border-honey focus:outline-none focus:ring-2 focus:ring-honey/25;
@@ -84,6 +94,53 @@
   @apply mb-1.5 block text-sm font-semibold text-wood;
 }
 @utility grain {
-  background-image: radial-gradient(rgb(107 74 46 / 0.05) 1px, transparent 1px);
-  background-size: 14px 14px;
+  background-image: var(--tex-paper);
+}
+/* lněné plátno */
+@utility linen {
+  background-image:
+    var(--tex-paper),
+    repeating-linear-gradient(0deg, rgb(107 74 46 / 0.035) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(90deg, rgb(107 74 46 / 0.03) 0 1px, transparent 1px 5px);
+}
+@utility kraft {
+  @apply bg-kraft;
+  background-image: var(--tex-paper), var(--tex-paper);
+}
+/* fotka vlepená do herbáře: papírový okraj a stín */
+@utility framed {
+  @apply relative bg-[#fffdf8] p-2 shadow-print sm:p-2.5;
+  border: 1px solid rgb(107 74 46 / 0.1);
+}
+/* proužek papírové pásky s potrhanými konci */
+@utility tape {
+  @apply absolute z-10 h-6 w-24 sm:h-7 sm:w-28;
+  background: rgb(222 203 160 / 0.82);
+  box-shadow: 0 1px 2px rgb(60 40 20 / 0.12);
+  clip-path: polygon(0 4%, 100% 0, 97% 22%, 100% 46%, 96% 70%, 100% 100%, 0 96%, 3% 76%, 0 52%, 4% 28%);
+}
+/* prošívaný okraj */
+@utility stitched {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border: 1.5px dashed rgb(107 74 46 / 0.28);
+    border-radius: inherit;
+    pointer-events: none;
+  }
+}
+/* dřevěný plátek s letokruhy pro ikony */
+@utility slice {
+  @apply grid place-items-center rounded-full text-wood;
+  background:
+    repeating-radial-gradient(circle at 44% 56%, transparent 0 3px, rgb(107 74 46 / 0.13) 3px 3.7px),
+    radial-gradient(circle at 44% 56%, #f7ebd2, #e9d3a9);
+  box-shadow: inset 0 0 0 2.5px #8b6440, inset 0 0 0 4px rgb(255 248 230 / 0.6), 0 2px 6px -2px rgb(60 40 20 / 0.3);
+}
+/* tenká dvojitá linka jako předěl */
+@utility rule-double {
+  border-top: 1px solid rgb(107 74 46 / 0.18);
+  box-shadow: 0 3px 0 -2px rgb(107 74 46 / 0.12);
 }

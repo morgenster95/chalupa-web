@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { BotanicalSprite } from "@/components/Botanical";
 import { getMessages, isLocale, LOCALES } from "@/lib/i18n";
 import { getSettings } from "@/lib/db";
 
@@ -35,8 +36,9 @@ export default async function LocaleLayout({ children, params }: { children: Rea
   return (
     <html lang={locale}>
       <body className="flex min-h-dvh flex-col">
+        <BotanicalSprite />
         <Header locale={locale} name={s.name} nav={m.nav} />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 overflow-x-clip">{children}</main>
         <Footer locale={locale} m={m} s={s} />
       </body>
     </html>
