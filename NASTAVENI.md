@@ -5,7 +5,7 @@
 > ale rezervace ani zprávy se neodesílají a administrace v náhledu není. Plný provoz poběží na Firebase.
 > Zapnutí: na GitHubu **Settings → Pages → Source: Deploy from a branch → `main` / `/docs`**. Na bezplatném účtu
 > musí být repozitář **veřejný**. Po změnách webu je potřeba náhled znovu sestavit
-> (`STATIC_EXPORT=1 NEXT_PUBLIC_DEMO=1 NEXT_PUBLIC_BASE_PATH=/chalupa-web next build` bez složek `app/admin` a `app/api`, výstup `out/` → `docs/`).
+> (`STATIC_EXPORT=1 NEXT_PUBLIC_DEMO=1 NEXT_PUBLIC_BASE_PATH=/chalupa-web next build` bez složek `app/admin` a `app/api`, výstup `out/` → `docs/`; v `docs/` musí zůstat prázdný soubor `.nojekyll`, jinak GitHub nezobrazí styly).
 
 Postupujte popořadě. Každý krok zabere 5–15 minut. Kde je napsáno **(volitelné)**, můžete krok přeskočit
 a vrátit se k němu později. Web funguje i bez něj.
