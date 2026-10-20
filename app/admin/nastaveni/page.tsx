@@ -128,6 +128,13 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
             <Field label="Název chalupy" name="name" defaultValue={s.name} required />
             <Field label="Ulice a číslo" name="address" defaultValue={s.address} />
             <Field label="Obec" name="municipality" defaultValue={s.municipality} />
+            <Field
+              label="Poloha na mapě (GPS)"
+              name="gps"
+              defaultValue={`${s.lat}, ${s.lng}`}
+              placeholder="49.6899, 14.0104"
+              hint="Na Mapy.cz klikněte pravým tlačítkem na chalupu, zkopírujte souřadnice a vložte je sem."
+            />
             <div className="grid grid-cols-2 gap-4">
               <Field label="E-mail (sem chodí poptávky)" name="email" type="email" defaultValue={s.email} />
               <Field label="Telefon" name="phone" defaultValue={s.phone} />

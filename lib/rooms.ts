@@ -14,6 +14,8 @@ const P = (name: string, alt: string) => p(name, 960, 1280, alt);
 
 // Rozřazení fotek. Pokud je některá fotka u špatného pokoje, stačí ji přesunout zde.
 export const PHOTOS = {
+  // Hlavní fotka nahoře na webu – ideálně celá chalupa na šířku. Novou fotku stačí uložit do public/fotky a změnit název zde.
+  hero: P("exterier-2", "Chalupa se zahradou"),
   exterior: [P("exterier-1", "Chalupa se zahradou na jaře"), P("exterier-2", "Zahrada za chalupou")],
   deer: P("obora", "Jeleni v oboře na kraji lesa"),
   kitchen: P("kuchynka", "Kuchyňský kout"),

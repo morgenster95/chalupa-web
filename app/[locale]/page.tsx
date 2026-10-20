@@ -3,11 +3,12 @@ import Link from "next/link";
 import { Flourish, Sprig } from "@/components/Botanical";
 import Gallery from "@/components/Gallery";
 import Icon from "@/components/Icon";
+import MapCard from "@/components/MapCard";
 import RoomCard from "@/components/RoomCard";
 import { getSettings } from "@/lib/db";
 import { getMessages, type Locale } from "@/lib/i18n";
 import { formatCzk } from "@/lib/pricing";
-import { GALLERY, PHOTOS, ROOM_LIST, ROOMS } from "@/lib/rooms";
+import { GALLERY, PHOTOS, ROOM_LIST } from "@/lib/rooms";
 
 const SURROUNDING_ICONS = ["swing", "tree", "deer", "city"];
 
@@ -22,39 +23,47 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
       {/* HERO */}
       <section className="relative overflow-hidden">
         <Sprig name="fern" className="absolute -left-16 -top-6 h-[30rem] w-auto -rotate-12 text-sage-dark/[0.14] md:left-[-2rem] md:h-[36rem]" />
-        <Sprig name="chamomile" className="absolute -right-10 bottom-10 hidden h-80 w-auto rotate-6 text-wood/[0.1] lg:block" />
-        <div className="container-x relative grid items-center gap-10 pb-20 pt-8 md:grid-cols-[1.05fr_1fr] md:gap-14 md:pb-28 md:pt-14">
-          <div className="order-2 md:order-1">
-            <p className="eyebrow">{m.home.eyebrow}</p>
-            <h1 className="mt-4 text-[2.6rem] leading-[1.05] sm:text-6xl lg:text-[4.4rem]">{m.home.heroTitle}</h1>
-            <Flourish className="mt-5 -ml-1" />
-            <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted">{m.home.heroText}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href={`/${locale}/rezervace`} className="btn-primary">
-                {m.home.heroCta}
-                <Icon name="arrow" className="h-4 w-4" />
-              </Link>
-              <Link href={`/${locale}#pokoje`} className="btn-secondary">
-                {m.home.heroCta2}
-              </Link>
+        <Sprig name="chamomile" className="absolute -right-10 top-4 hidden h-72 w-auto rotate-6 text-wood/[0.1] lg:block" />
+        <div className="container-x relative pt-8 md:pt-12">
+          <div className="grid items-end gap-6 md:grid-cols-[1.15fr_1fr] md:gap-12">
+            <div>
+              <p className="eyebrow">{m.home.eyebrow}</p>
+              <h1 className="mt-4 text-[2.6rem] leading-[1.05] sm:text-6xl lg:text-[4.4rem]">{m.home.heroTitle}</h1>
+              <Flourish className="mt-5 -ml-1" />
             </div>
-            {Number.isFinite(minPrice) && (
-              <p className="mt-8 text-sm text-muted">
-                {m.rooms.from} <strong className="font-serif text-xl text-wood">{formatCzk(minPrice, locale)}</strong> {m.rooms.perNight}
-              </p>
-            )}
-          </div>
-          <div className="relative order-1 md:order-2">
-            <div className="framed ml-auto w-[82%] rotate-[1.2deg] md:w-[86%]">
-              <span className="tape -top-3 left-1/2 -translate-x-1/2 -rotate-3" />
-              <div className="relative aspect-[4/5] overflow-hidden">
-                <Image src={PHOTOS.exterior[0].src} alt={PHOTOS.exterior[0].alt} fill priority sizes="(min-width: 768px) 45vw, 85vw" className="object-cover" />
+            <div className="md:pb-3">
+              <p className="max-w-xl text-lg leading-relaxed text-muted">{m.home.heroText}</p>
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <Link href={`/${locale}/rezervace`} className="btn-primary">
+                  {m.home.heroCta}
+                  <Icon name="arrow" className="h-4 w-4" />
+                </Link>
+                <Link href={`/${locale}#pokoje`} className="btn-secondary">
+                  {m.home.heroCta2}
+                </Link>
               </div>
+              {Number.isFinite(minPrice) && (
+                <p className="mt-5 text-sm text-muted">
+                  {m.rooms.from} <strong className="font-serif text-xl text-wood">{formatCzk(minPrice, locale)}</strong> {m.rooms.perNight}
+                </p>
+              )}
             </div>
-            <div className="framed absolute -bottom-8 left-0 w-[52%] -rotate-[3deg] md:-bottom-12">
-              <span className="tape -left-5 top-1 -rotate-[38deg] !w-20" />
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <Image src={ROOMS["pokoj-5"].cover.src} alt={ROOMS["pokoj-5"].cover.alt} fill sizes="(min-width: 768px) 25vw, 50vw" className="object-cover" />
+          </div>
+
+          <div className="relative mt-10 pb-20 md:mt-12 md:pb-24">
+            <div className="framed -rotate-[0.5deg]">
+              <span className="tape -top-3 left-[12%] -rotate-[4deg]" />
+              <span className="tape -top-3 right-[12%] rotate-[3deg]" />
+              <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[3/2]">
+                <Image
+                  src={PHOTOS.hero.src}
+                  alt={PHOTOS.hero.alt}
+                  fill
+                  priority
+                  sizes="(min-width: 1152px) 1120px, 100vw"
+                  className="object-cover"
+                  style={{ objectPosition: "50% 27%" }}
+                />
               </div>
             </div>
           </div>
@@ -163,6 +172,29 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
               ))}
             </ul>
           </div>
+        </div>
+      </section>
+
+      {/* MAPA */}
+      <section id="mapa" className="relative scroll-mt-24 overflow-hidden">
+        <Sprig name="clover" className="absolute -left-10 top-10 hidden h-72 w-auto -rotate-12 text-sage-dark/[0.12] md:block" />
+        <div className="container-x relative grid items-center gap-10 pt-16 md:grid-cols-[1fr_1.5fr] md:gap-14 md:pt-24">
+          <div>
+            <h2 className="text-4xl sm:text-5xl">{m.home.mapTitle}</h2>
+            <Flourish className="mt-4 -ml-1" />
+            <p className="mt-5 text-lg leading-relaxed text-muted">{m.home.mapText}</p>
+            <p className="mt-6 flex items-start gap-3 font-semibold text-wood">
+              <span className="slice h-11 w-11 shrink-0">
+                <Icon name="pin" className="h-5 w-5" />
+              </span>
+              <span className="pt-1">
+                {s.address}
+                <br />
+                <span className="font-normal text-muted">{s.municipality}</span>
+              </span>
+            </p>
+          </div>
+          <MapCard s={s} labels={{ open: m.home.mapOpen, navigate: m.home.mapNavigate, alt: m.home.mapAlt }} />
         </div>
       </section>
 

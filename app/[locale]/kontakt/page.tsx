@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Sprig } from "@/components/Botanical";
 import ContactForm from "@/components/ContactForm";
 import Icon from "@/components/Icon";
+import MapCard from "@/components/MapCard";
 import { getSettings } from "@/lib/db";
 import { getMessages, type Locale } from "@/lib/i18n";
-import { PHOTOS } from "@/lib/rooms";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -16,7 +15,6 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   const { locale } = await params;
   const m = getMessages(locale);
   const s = await getSettings();
-  const mapQuery = encodeURIComponent(`${s.address}, ${s.municipality}`);
   return (
     <section className="container-x relative grid gap-10 py-10 md:grid-cols-[1fr_1.3fr] md:py-16">
       <Sprig name="chamomile" className="absolute -left-24 top-24 hidden h-96 w-auto -rotate-12 text-wood/[0.09] lg:block" />
@@ -33,7 +31,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
               <p className="font-semibold">
                 {s.address}, {s.municipality}
               </p>
-              <a href={`https://mapy.cz/zakladni?q=${mapQuery}`} target="_blank" rel="noopener" className="text-sm font-semibold text-honey-dark hover:underline">
+              <a href={`https://mapy.com/fnc/v1/showmap?mapset=outdoor&center=${s.lng},${s.lat}&zoom=15&marker=true`} target="_blank" rel="noopener" className="text-sm font-semibold text-honey-dark hover:underline">
                 {m.contact.map} →
               </a>
             </div>
@@ -61,9 +59,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
             </div>
           </li>
         </ul>
-        <div className="relative mt-10 hidden aspect-[4/3] overflow-hidden rounded-[2rem] md:block">
-          <Image src={PHOTOS.exterior[1].src} alt={PHOTOS.exterior[1].alt} fill sizes="40vw" className="object-cover" />
-        </div>
+        <MapCard s={s} className="mt-10" labels={{ open: m.home.mapOpen, navigate: m.home.mapNavigate, alt: m.home.mapAlt }} />
       </div>
       <div>
         <ContactForm locale={locale} m={m} turnstileKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY} />

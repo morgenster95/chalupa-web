@@ -44,6 +44,9 @@ export interface Settings {
   tagline: Localized;
   address: string;
   municipality: string;
+  /** Poloha na mapě (GPS, desetinné stupně) */
+  lat: number;
+  lng: number;
   email: string;
   phone: string;
   iban: string;

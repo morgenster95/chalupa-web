@@ -116,6 +116,7 @@ export async function saveSettings(fd: FormData) {
     tagline: { cs: str(fd, "tagline_cs"), en: str(fd, "tagline_en"), de: str(fd, "tagline_de") },
     address: str(fd, "address"),
     municipality: str(fd, "municipality"),
+    ...parseGps(str(fd, "gps"), cur),
     email: str(fd, "email"),
     phone: str(fd, "phone"),
     iban,
@@ -184,4 +185,14 @@ export async function regenerateIcalToken() {
   s.icalToken = newId() + newId();
   await (await db()).saveSettings(s);
   back("/admin/ical", { ok: true, message: "Vygenerovány nové adresy. Nezapomeňte je aktualizovat v Bookingu/Airbnb." });
+}
+
+/** „49.6899, 14.0104“ (zkopírováno z Mapy.cz / Google Map) → { lat, lng }; při chybě ponechá původní. */
+function parseGps(v: string, cur: Settings): { lat: number; lng: number } {
+  const m = v.match(/(-?\d{1,2}(?:[.,]\d+)?)\s*°?\s*[NnSs]?\s*[,;\s]\s*(-?\d{1,3}(?:[.,]\d+)?)/);
+  if (!m) return { lat: cur.lat, lng: cur.lng };
+  const lat = Number(m[1].replace(",", "."));
+  const lng = Number(m[2].replace(",", "."));
+  if (!(Math.abs(lat) <= 90 && Math.abs(lng) <= 180)) return { lat: cur.lat, lng: cur.lng };
+  return { lat, lng };
 }

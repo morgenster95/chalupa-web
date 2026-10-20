@@ -13,6 +13,9 @@ export const DEFAULT_SETTINGS: Settings = {
   },
   address: "[Ulice a číslo]",
   municipality: "[Obec], okres Příbram",
+  // zástupná poloha (Příbram) – přesné souřadnice chalupy se vyplní v administraci
+  lat: 49.6899,
+  lng: 14.0104,
   email: "info@example.cz",
   phone: "+420 000 000 000",
   iban: "CZ6508000000192000145399",
