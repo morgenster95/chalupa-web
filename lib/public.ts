@@ -1,6 +1,6 @@
 import "server-only";
 import type { PublicSettings } from "@/components/BookingWidget";
-import { devShortcuts, stripeEnabled } from "./config";
+import { devShortcuts, isStaticPreview, stripeEnabled } from "./config";
 import type { Settings } from "./types";
 
 export function publicSettings(s: Settings): PublicSettings {
@@ -10,4 +10,4 @@ export function publicSettings(s: Settings): PublicSettings {
 }
 
 /** Je okamžitá platba dostupná (Stripe nastaven, nebo lokální simulace)? */
-export const instantReady = () => stripeEnabled() || devShortcuts();
+export const instantReady = () => stripeEnabled() || devShortcuts() || isStaticPreview;

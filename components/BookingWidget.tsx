@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { capacity, calculatePrice, formatCzk, validateStay } from "@/lib/pricing";
-import { diffDays } from "@/lib/dates";
+import { addDays, diffDays, todayPrague } from "@/lib/dates";
 import type { Messages } from "@/lib/i18n";
 import type { RoomId, Settings } from "@/lib/types";
 import Icon from "./Icon";
@@ -33,7 +33,19 @@ function nightsWord(n: number, m: Messages) {
 
 const INTL: Record<string, string> = { cs: "cs-CZ", en: "en-GB", de: "de-DE" };
 
-export default function BookingWidget({ locale, m, s, today, initialRoom, lockRoom, stripeReady }: Props) {
+/** Statický náhled (GitHub Pages): bez serveru – obsazenost je ukázková a nic se neodesílá. */
+const DEMO = process.env.NEXT_PUBLIC_DEMO === "1";
+const DEMO_TEXT: Record<string, string> = {
+  cs: "Toto je náhled webu – rezervace se zatím neodesílají. Ostrý provoz poběží na Firebase.",
+  en: "This is a preview – bookings are not sent yet.",
+  de: "Dies ist eine Vorschau – Buchungen werden noch nicht gesendet.",
+};
+function demoBusy(today: string) {
+  return new Set([5, 6, 7, 19, 20, 21, 22, 40, 41].map((d) => addDays(today, d)));
+}
+
+export default function BookingWidget({ locale, m, s, today: serverToday, initialRoom, lockRoom, stripeReady }: Props) {
+  const [today, setToday] = useState(serverToday);
   const rooms = (Object.keys(s.rooms) as RoomId[]).filter((r) => s.rooms[r].active);
   const [roomId, setRoomId] = useState<RoomId>(rooms.includes(initialRoom) ? initialRoom : rooms[0]);
   const [busy, setBusy] = useState<Set<string> | null>(null);
@@ -53,8 +65,20 @@ export default function BookingWidget({ locale, m, s, today, initialRoom, lockRo
   const formRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // pokoj z adresy (?pokoj=pokoj-5) a aktuální datum v prohlížeči
+    const q = new URLSearchParams(window.location.search).get("pokoj") as RoomId | null;
+    if (!lockRoom && q && rooms.includes(q)) setRoomId(q);
+    if (DEMO) setToday(todayPrague());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     let alive = true;
     setBusy(null);
+    if (DEMO) {
+      setBusy(demoBusy(todayPrague()));
+      return;
+    }
     fetch(`/api/availability?room=${roomId}`, { cache: "no-store" })
       .then((r) => r.json())
       .then((j: { busy: string[] }) => alive && setBusy(new Set(j.busy)))
@@ -89,6 +113,7 @@ export default function BookingWidget({ locale, m, s, today, initialRoom, lockRo
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     if (!stay || stayError) return setError(m.booking.selectDatesFirst);
+    if (DEMO) return setError(DEMO_TEXT[locale] ?? DEMO_TEXT.cs);
     setSending(true);
     setError(null);
     try {

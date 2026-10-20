@@ -50,9 +50,11 @@ export default function Footer({ locale, m, s }: { locale: string; m: Messages; 
           <span>
             © {new Date().getFullYear()} {s.name}. {m.footer.rights}
           </span>
-          <Link href="/admin" className="hover:text-wood" prefetch={false}>
-            {m.footer.admin}
-          </Link>
+          {process.env.NEXT_PUBLIC_DEMO !== "1" && (
+            <Link href="/admin" className="hover:text-wood" prefetch={false}>
+              {m.footer.admin}
+            </Link>
+          )}
         </div>
       </div>
     </footer>

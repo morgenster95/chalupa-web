@@ -3,10 +3,12 @@ import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { getMessages, isLocale } from "@/lib/i18n";
+import { getMessages, isLocale, LOCALES } from "@/lib/i18n";
 import { getSettings } from "@/lib/db";
 
-export const dynamic = "force-dynamic";
+export function generateStaticParams() {
+  return LOCALES.map((locale) => ({ locale }));
+}
 
 export const viewport: Viewport = { themeColor: "#fbf8f2" };
 
@@ -20,8 +22,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: { default: `${s.name} | ${m.meta.title}`, template: `%s | ${s.name}` },
     description: m.meta.description,
     alternates: { languages: { cs: "/cs", en: "/en", de: "/de" } },
-    openGraph: { type: "website", siteName: s.name, images: ["/fotky/pokoj5-1.jpg"], locale },
-    icons: { icon: "/favicon.svg" },
+    openGraph: { type: "website", siteName: s.name, images: [`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/fotky/pokoj5-1.jpg`], locale },
+    icons: { icon: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/favicon.svg` },
   };
 }
 

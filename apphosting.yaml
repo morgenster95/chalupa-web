@@ -9,23 +9,23 @@ runConfig:
 env:
   # Adresa webu (po připojení vlastní domény ji změňte)
   - variable: SITE_URL
-    value: https://ZMENTE-NA-VASI-ADRESU.web.app
+    value: https://chalupa--chalupa-79dfb.europe-west4.hosted.app
   # Kdo se smí přihlásit do administrace (Google účty, oddělené čárkou)
   - variable: ADMIN_EMAILS
-    value: vas.email@gmail.com
-  # Odesílatel e-mailů (doména ověřená v Resendu)
-  - variable: EMAIL_FROM
-    value: "Chalupa pod Oborou <rezervace@vase-domena.cz>"
+    value: lekesd@gmail.com
+  # Odesílatel e-mailů – odkomentujte po ověření domény v Resendu
+  # - variable: EMAIL_FROM
+  #   value: "Chalupa pod Oborou <rezervace@vase-domena.cz>"
 
   # Veřejná konfigurace Firebase pro přihlášení Googlem (Nastavení projektu → Vaše aplikace)
   - variable: NEXT_PUBLIC_FIREBASE_API_KEY
-    value: ZMENTE
+    value: AIzaSyAJev3St_-gjVOmSaK-jx2P0dUJU6FeSJY
   - variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
-    value: ZMENTE.firebaseapp.com
+    value: chalupa-79dfb.firebaseapp.com
   - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
-    value: ZMENTE
+    value: chalupa-79dfb
   - variable: NEXT_PUBLIC_FIREBASE_APP_ID
-    value: ZMENTE
+    value: "1:558244118289:web:86e448a153e0edccd516b0"
 
   # --- Tajné klíče (vytvoří se příkazem: firebase apphosting:secrets:set NAZEV) ---
   - variable: APP_SECRET

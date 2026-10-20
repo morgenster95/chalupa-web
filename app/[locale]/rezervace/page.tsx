@@ -4,25 +4,16 @@ import { todayPrague } from "@/lib/dates";
 import { getSettings } from "@/lib/db";
 import { getMessages, type Locale } from "@/lib/i18n";
 import { instantReady, publicSettings } from "@/lib/public";
-import { ROOM_IDS, type RoomId } from "@/lib/types";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   return { title: getMessages(locale).booking.title };
 }
 
-export default async function BookingPage({
-  params,
-  searchParams,
-}: {
-  params: Promise<{ locale: Locale }>;
-  searchParams: Promise<{ pokoj?: string }>;
-}) {
+export default async function BookingPage({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
-  const { pokoj } = await searchParams;
   const m = getMessages(locale);
   const s = await getSettings();
-  const initial = (ROOM_IDS as readonly string[]).includes(pokoj ?? "") ? (pokoj as RoomId) : "pokoj-2";
 
   return (
     <section className="grain">
@@ -31,7 +22,7 @@ export default async function BookingPage({
         <h1 className="mt-3 text-4xl sm:text-5xl">{m.booking.title}</h1>
         <p className="mt-3 max-w-2xl text-lg text-muted">{m.booking.subtitle}</p>
         <div className="mt-10">
-          <BookingWidget locale={locale} m={m} s={publicSettings(s)} today={todayPrague()} initialRoom={initial} stripeReady={instantReady()} />
+          <BookingWidget locale={locale} m={m} s={publicSettings(s)} today={todayPrague()} initialRoom="pokoj-2" stripeReady={instantReady()} />
         </div>
       </div>
     </section>

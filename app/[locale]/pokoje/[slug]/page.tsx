@@ -9,7 +9,11 @@ import { getSettings } from "@/lib/db";
 import { getMessages, nightsLabel, t, type Locale } from "@/lib/i18n";
 import { formatCzk } from "@/lib/pricing";
 import { instantReady, publicSettings } from "@/lib/public";
-import { roomBySlug } from "@/lib/rooms";
+import { ROOM_LIST, roomBySlug } from "@/lib/rooms";
+
+export function generateStaticParams() {
+  return ROOM_LIST.map((r) => ({ slug: r.slug }));
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
   const { locale, slug } = await params;

@@ -7,7 +7,8 @@ export interface Photo {
   alt: string;
 }
 
-const p = (name: string, w: number, h: number, alt: string): Photo => ({ src: `/fotky/${name}.jpg`, w, h, alt });
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const p = (name: string, w: number, h: number, alt: string): Photo => ({ src: `${BASE}/fotky/${name}.jpg`, w, h, alt });
 const L = (name: string, alt: string) => p(name, 1280, 960, alt);
 const P = (name: string, alt: string) => p(name, 960, 1280, alt);
 

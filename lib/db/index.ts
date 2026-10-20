@@ -1,5 +1,5 @@
 import "server-only";
-import { firestoreEnabled } from "../config";
+import { firestoreEnabled, isStaticPreview } from "../config";
 import { DEFAULT_SETTINGS, withDefaults } from "../defaults";
 import type { Settings } from "../types";
 import type { Store } from "./store";
@@ -16,6 +16,10 @@ export async function db(): Promise<Store> {
 }
 
 export async function getSettings(): Promise<Settings> {
+  if (isStaticPreview) return DEFAULT_SETTINGS;
+  // Nastavení se mění v administraci → stránky se vždy vykreslují aktuálně
+  const { connection } = await import("next/server");
+  await connection();
   const s = await (await db()).getSettings();
   return s ? withDefaults(s) : DEFAULT_SETTINGS;
 }

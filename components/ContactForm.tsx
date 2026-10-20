@@ -17,6 +17,7 @@ export default function ContactForm({ locale, m, turnstileKey }: { locale: strin
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (process.env.NEXT_PUBLIC_DEMO === "1") return setError("Náhled webu – zprávy se zatím neodesílají.");
     const fd = new FormData(e.currentTarget);
     setState("sending");
     setError(null);
