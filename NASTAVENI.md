@@ -1,10 +1,11 @@
 # Návod: jak web dostat online
 
-> **Náhled na GitHub Pages:** při každém nahrání na GitHub se automaticky sestaví statický náhled webu
+> **Náhled na GitHub Pages:** složka `docs/` obsahuje hotový statický náhled webu
 > (`https://morgenster95.github.io/chalupa-web/`). Je to jen ukázka vzhledu: kalendář a výpočet ceny fungují,
 > ale rezervace ani zprávy se neodesílají a administrace v náhledu není. Plný provoz poběží na Firebase.
-> Zapnutí: na GitHubu v repozitáři **Settings → Pages → Source: GitHub Actions**. Na bezplatném účtu
-> musí být repozitář **veřejný** (Settings → General → Danger Zone → Change visibility).
+> Zapnutí: na GitHubu **Settings → Pages → Source: Deploy from a branch → `main` / `/docs`**. Na bezplatném účtu
+> musí být repozitář **veřejný**. Po změnách webu je potřeba náhled znovu sestavit
+> (`STATIC_EXPORT=1 NEXT_PUBLIC_DEMO=1 NEXT_PUBLIC_BASE_PATH=/chalupa-web next build` bez složek `app/admin` a `app/api`, výstup `out/` → `docs/`).
 
 Postupujte popořadě. Každý krok zabere 5–15 minut. Kde je napsáno **(volitelné)**, můžete krok přeskočit
 a vrátit se k němu později. Web funguje i bez něj.

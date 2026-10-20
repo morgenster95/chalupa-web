@@ -1,0 +1,8 @@
+User-Agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api
+Disallow: /*/rezervace/hotovo
+Disallow: /*/rezervace/platba-dev
+
+Sitemap: https://morgenster95.github.io/chalupa-web/sitemap.xml
